@@ -1,0 +1,91 @@
+{
+  "platform": "windows",
+  "tools": {
+    "ffmpeg": {
+      "required": true,
+      "installer": {
+        "type": "winget",
+        "id": "Gyan.FFmpeg"
+      },
+      "binary_candidates": [
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "C:/Program Files/ffmpeg/bin/ffmpeg.exe"
+      ],
+      "env_var": "AI_ANIME_FFMPEG_BIN"
+    },
+    "ffprobe": {
+      "required": true,
+      "binary_candidates": [
+        "C:/ffmpeg/bin/ffprobe.exe",
+        "C:/Program Files/ffmpeg/bin/ffprobe.exe"
+      ],
+      "env_var": "AI_ANIME_FFPROBE_BIN"
+    },
+    "blender": {
+      "required": true,
+      "installer": {
+        "type": "winget",
+        "id": "BlenderFoundation.Blender"
+      },
+      "binary_candidates": [
+        "C:/Program Files/Blender Foundation/Blender 4.2/blender.exe",
+        "C:/Program Files/Blender Foundation/Blender 4.1/blender.exe",
+        "C:/Program Files/Blender Foundation/Blender/blender.exe"
+      ],
+      "env_var": "AI_ANIME_BLENDER_BIN"
+    },
+    "git": {
+      "required": true,
+      "installer": {
+        "type": "winget",
+        "id": "Git.Git"
+      },
+      "binary_candidates": [
+        "C:/Program Files/Git/bin/git.exe"
+      ],
+      "env_var": "GIT_BIN"
+    },
+    "micromamba": {
+      "required": true,
+      "installer": {
+        "type": "winget",
+        "id": "mamba-org.micromamba"
+      },
+      "binary_candidates": [
+        "%USERPROFILE%/AppData/Local/Micromamba/micromamba.exe",
+        "C:/micromamba/micromamba.exe"
+      ],
+      "env_var": "MICROMAMBA_BIN"
+    },
+    "cosyvoice": {
+      "required": true,
+      "repo_url": "",
+      "checkout": "main",
+      "env_name": "ai-anime-cosyvoice",
+      "env_var": "AI_ANIME_COSYVOICE_CMD_TEMPLATE",
+      "cmd_template": "micromamba run -n ai-anime-cosyvoice python {repo_root}/cli.py --text {text} --ref-audio {ref_audio} --ref-text {ref_text} --output {output}"
+    },
+    "whisperx": {
+      "required": true,
+      "repo_url": "",
+      "checkout": "main",
+      "env_name": "ai-anime-whisperx",
+      "env_var": "AI_ANIME_WHISPERX_CMD_TEMPLATE",
+      "cmd_template": "micromamba run -n ai-anime-whisperx python -m whisperx {audio} --output_dir {output_dir}"
+    },
+    "hunyuan3d": {
+      "required": true,
+      "repo_url": "",
+      "checkout": "main",
+      "env_name": "ai-anime-hunyuan3d",
+      "env_var": "AI_ANIME_HUNYUAN3D_CMD_TEMPLATE",
+      "cmd_template": "micromamba run -n ai-anime-hunyuan3d python {repo_root}/infer.py --prompt {prompt} --output {output}"
+    }
+  },
+  "paths": {
+    "workspace_root": "D:/AI_Anime_Project",
+    "third_party_root": "D:/AI_Anime_Project/ThirdParty",
+    "models_root": "D:/AI_Anime_Project/Models",
+    "envs_root": "D:/AI_Anime_Project/.envs"
+  }
+}

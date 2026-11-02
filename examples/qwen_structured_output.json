@@ -1,0 +1,130 @@
+{
+  "pipeline_spec": {
+    "project_root": "/workspace/examples/mock_project",
+    "fps": 30,
+    "resolution": [1920, 1080],
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "audio_bit_depth": 24,
+    "color_space": "sRGB",
+    "default_transition": "cut",
+    "default_transition_animation": "hold",
+    "default_camera": {
+      "warmup_frames": 24,
+      "tail_frames": 0
+    },
+    "camera_presets": {
+      "medium_close": {
+        "anchor": "head",
+        "azimuth_deg": 15,
+        "elevation_deg": 5,
+        "distance_m": 1.8,
+        "focal_length": 50,
+        "f_stop": 2.8,
+        "focus_target": "head"
+      }
+    },
+    "audio_qc": {
+      "rms_db_range": [-24, -12],
+      "max_silence_ratio": 0.4,
+      "duration_per_char_range": [0.15, 0.45]
+    },
+    "ducking_params": {
+      "threshold": 0.05,
+      "ratio": 8,
+      "attack": 20,
+      "release": 300,
+      "knee": 2.8
+    }
+  },
+  "project_meta": {
+    "title": "AI Anime Episode 01",
+    "shots_dir": "Outputs/Shots/"
+  },
+  "shot_order": ["shot_001", "shot_002"],
+  "transitions": [
+    {
+      "from": "shot_001",
+      "to": "shot_002",
+      "type": "cross_dissolve",
+      "duration_frames": 15
+    }
+  ],
+  "global_audio": {
+    "bgm": {
+      "path": "Assets/Audio/BGM/ep01_theme.wav",
+      "gain_db": -18.0,
+      "fade_in_sec": 1.0,
+      "fade_out_sec": 2.0,
+      "ducking": true
+    },
+    "ambience": {
+      "path": "Assets/Audio/Ambience/room_hum.wav",
+      "gain_db": -24.0
+    }
+  },
+  "role_voicebank": {
+    "Hero": {
+      "ref_audio": "Assets/Audio/VoiceBank/hero_ref.wav",
+      "ref_text": "系统已就绪，准备执行全流程逆向清洗。"
+    }
+  },
+  "shots": [
+    {
+      "shot_id": "shot_001",
+      "camera": {
+        "type": "medium_close"
+      },
+      "assets": [
+        {
+          "name": "Hero",
+          "type": "master",
+          "master": {
+            "path": "Assets/Characters/Hero_Master.glb",
+            "sha256": null
+          },
+          "target_tris": 15000
+        }
+      ],
+      "dialogue": [
+        {
+          "role": "Hero",
+          "text": "系统已就绪。",
+          "start_offset": 0.0
+        }
+      ],
+      "sfx": [
+        {
+          "path": "Assets/Audio/SFX/door_open.wav",
+          "start_offset": 1.5,
+          "duration": 0.8,
+          "gain_db": -6.0
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_002",
+      "camera": {
+        "type": "medium_close"
+      },
+      "assets": [
+        {
+          "name": "Console",
+          "type": "generate",
+          "generation": {
+            "prompt": "anime control console, clean hard surface, cel shading, front facing"
+          },
+          "target_tris": 8000
+        }
+      ],
+      "dialogue": [
+        {
+          "role": "Hero",
+          "text": "协议已经锁定。",
+          "start_offset": 0.0
+        }
+      ],
+      "sfx": []
+    }
+  ]
+}
